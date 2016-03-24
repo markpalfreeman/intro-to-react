@@ -1,15 +1,16 @@
-const React          = require('react')
-const ReactDOM       = require('react-dom')
-const MyTitle        = require('./MyTitle')
+const React = require('react')
+const ReactDOM = require('react-dom')
+const { Router, Route, hashHistory } = require('react-router')
+const Search = require('./Search')
+const Landing = require('./Landing')
 
 // "Stateless component" = shed excess React Component baggage/methods
-const MyFirstComponent = () => (
-  // Implicit 'return' w/o { }
-  <div>
-    <MyTitle title="Props are great!" color="rebeccapurple"/>
-    <MyTitle title="Use props everywhere!" color="mediumaquamarine"/>
-    <MyTitle title="OMGLOLWTFBBQ" color="papayawhip"/>
-  </div>
+const App = () => (
+  // Implicit 'return' without { }
+  <Router history={hashHistory}>
+    <Route path='/' component={Landing}/>
+    <Route path='/search' component={Search}/>
+  </Router>
 )
 
-ReactDOM.render(<MyFirstComponent/>, document.getElementById('app'))
+ReactDOM.render(<App/>, document.getElementById('app'))
