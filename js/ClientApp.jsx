@@ -1,6 +1,6 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
-const { Router, Route, IndexRoute, hashHistory } = require('react-router')
+const { Router, browserHistory } = require('react-router')
 const { Provider } = require('react-redux')
 
 const Layout = require('./Layout')
@@ -51,3 +51,4 @@ if (module && module.require) {
 })
 
 ReactDOM.render(<App/>, document.getElementById('app'))
+App.History = browserHistory // share history

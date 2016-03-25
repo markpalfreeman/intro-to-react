@@ -1,5 +1,5 @@
 const React = require('react')
-const { Link, hashHistory } = require('react-router')
+const { Link, browserHistory } = require('react-router')
 const { connector } = require('./Store')
 
 class Landing extends React.Component {
