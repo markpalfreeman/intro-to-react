@@ -17,6 +17,12 @@ const App = React.createClass({
     const showArray = shows.filter((show) => (
       show.imdbID === nextState.params.id
     ))
+// Make Node 'ensure' calls synchronous
+if (module && module.require) {
+  if (typeof require.ensure === 'undefined') {
+    require.ensure = require('node-ensure')  // shim for node.js
+  }
+}
 
     // Redirect to home page if no show is found
     if (showArray.length < 1) {
