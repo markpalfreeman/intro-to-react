@@ -2,16 +2,41 @@ const React = require('react')
 const { shows } = require('../public/data')
 const ShowCard = require('./ShowCard')
 
-const Search = () => (
-  <div className='container'>
-    <div className='shows'>
+const Search = React.createClass({
+  getInitialState () {
+    return {
+      searchTerm: ''
+    }
+  },
 
-      {shows.map((show) => (
-        <ShowCard {...show} key={show.imdbID}/>
-      ))}
+  handleSearchTerm (event) {
+    this.setState({searchTerm: event.target.value})
+  },
 
-    </div>
-  </div>
-)
+  render () {
+    return (
+      <div className='container'>
+        <header className='header'>
+          <h1 className='brand'>VideoViewer</h1>
+          <input className='search-input' type='text' placeholder='Search' value={this.state.searchTerm} onChange={this.handleSearchTerm}/>
+        </header>
+        <div className='shows'>
+          {shows
+            .filter((show) => {
+              return (
+                `${show.title} ${show.description}`
+                .toLowerCase()
+                .indexOf(this.state.searchTerm.toLowerCase()) >= 0
+              )
+            })
+            .map((show) => (
+              <ShowCard {...show} key={show.imdbID}/>
+            ))
+          }
+        </div>
+      </div>
+    )
+  }
+})
 
 module.exports = Search
