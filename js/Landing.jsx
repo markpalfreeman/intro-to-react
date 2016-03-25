@@ -9,5 +9,6 @@ const Landing = () => (
     <Link to='/search' className='browse-all'> or Browse All</Link>
   </div>
 )
+const { connector } = require('./Store')
 
-module.exports = Landing
+module.exports = connector(Landing)

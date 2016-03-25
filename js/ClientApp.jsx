@@ -1,12 +1,14 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 const { Router, Route, IndexRoute, hashHistory } = require('react-router')
+const { Provider } = require('react-redux')
 
 const Layout = require('./Layout')
 const Search = require('./Search')
 const Landing = require('./Landing')
 const Details = require('./Details')
 const { shows } = require('../public/data')
+const { store } = require('./Store')
 
 const App = React.createClass({
   // 'nextState' (properties) and 'replace' from Router
@@ -29,14 +31,15 @@ const App = React.createClass({
 
   render () {
     return (
-      // Implicit 'return' without { }
-      <Router history={hashHistory}>
-        <Route path='/' component={Layout}>
-          <IndexRoute component={Landing}/>
-          <Route path='/search' component={Search} shows={shows}/>
-          <Route path='/details/:id' component={Details} onEnter={this.assignShow}/>
-        </Route>
-      </Router>
+      <Provider store={store}>
+        <Router history={hashHistory}>
+          <Route path='/' component={Layout}>
+            <IndexRoute component={Landing}/>
+            <Route path='/search' component={Search} shows={shows}/>
+            <Route path='/details/:id' component={Details} onEnter={this.assignShow}/>
+          </Route>
+        </Router>
+      </Provider>
     )
   }
 })
