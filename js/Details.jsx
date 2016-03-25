@@ -60,4 +60,4 @@ const Details = React.createClass({
   }
 })
 
-module.exports = Details
+module.exports = connector(Details)
