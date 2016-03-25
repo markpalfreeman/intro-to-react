@@ -1,8 +1,12 @@
 const React = require('react')
-const { shows } = require('../public/data')
 const ShowCard = require('./ShowCard')
+const { object } = React.PropTypes
 
 const Search = React.createClass({
+  propTypes: {
+    route: object
+  },
+
   getInitialState () {
     return {
       searchTerm: ''
@@ -21,7 +25,7 @@ const Search = React.createClass({
           <input className='search-input' type='text' placeholder='Search' value={this.state.searchTerm} onChange={this.handleSearchTerm}/>
         </header>
         <div className='shows'>
-          {shows
+          {this.props.route.shows
             .filter((show) => {
               return (
                 `${show.title} ${show.description}`
