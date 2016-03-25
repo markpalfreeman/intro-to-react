@@ -9,6 +9,24 @@ const Details = require('./Details')
 const { shows } = require('../public/data')
 
 const App = React.createClass({
+  // 'nextState' (properties) and 'replace' from Router
+  assignShow (nextState, replace) {
+    // Get an array of shows matching route/show ID (hoping to match 1)
+    const showArray = shows.filter((show) => (
+      show.imdbID === nextState.params.id
+    ))
+
+    // Redirect to home page if no show is found
+    if (showArray.length < 1) {
+      // 'replace()' is a method on ReactRouter
+      return replace('/')
+    }
+
+    // Return new object for nextState with the show found
+    Object.assign(nextState.params, showArray[0])
+    return nextState
+  },
+
   render () {
     return (
       // Implicit 'return' without { }
@@ -16,7 +34,7 @@ const App = React.createClass({
         <Route path='/' component={Layout}>
           <IndexRoute component={Landing}/>
           <Route path='/search' component={Search} shows={shows}/>
-          <Route path='/details/:id' component={Details}/>
+          <Route path='/details/:id' component={Details} onEnter={this.assignShow}/>
         </Route>
       </Router>
     )
