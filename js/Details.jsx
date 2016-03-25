@@ -1,6 +1,7 @@
 const React = require('react')
 const Header = require('./Header')
 const axios = require('axios')
+const { connector } = require('./Store')
 const { arrayOf, object } = React.PropTypes
 
 const Details = React.createClass({

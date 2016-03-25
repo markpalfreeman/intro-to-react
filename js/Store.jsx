@@ -1,11 +1,13 @@
 const redux = require('redux')
 const reactRedux = require('react-redux')
+const {shows} = require('../public/data')
 
 // Actions
 const SET_SEARCH_TERM = 'setSearchTerm'
 
 const initialState = {
-  searchTerm: ''
+  searchTerm: '',
+  shows
 }
 
 // Main Dispatch function
@@ -32,12 +34,11 @@ const store = redux.createStore(rootReducer, initialState, redux.compose(
 ))
 
 const mapStateToProps = (state) => ({
-  // implicitly returns object
-  searchTerm: state.searchTerm
+  searchTerm: state.searchTerm,
+  shows: state.shows
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  // implicitly returns object
   setSearchTerm (searchTerm) {
     dispatch({type: SET_SEARCH_TERM, value: searchTerm})
   }
