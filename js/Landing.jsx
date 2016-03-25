@@ -1,23 +1,22 @@
 const React = require('react')
 const { Link, browserHistory } = require('react-router')
 const { connector } = require('./Store')
+const { func, string } = React.PropTypes
 
-class Landing extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.handleSearchTerm = this.handleSearchTerm.bind(this)
-    this.goToForm = this.goToForm.bind(this)
-  }
+const Landing = React.createClass({
+  propTypes: {
+    searchTerm: string,
+    setSearchTerm: func
+  },
 
   handleSearchTerm (event) {
     this.props.setSearchTerm(event.target.value)
-  }
+  },
 
-  goToForm (event) {
-    hashHistory.push('search')
+  goToSearch (event) {
+    browserHistory.push('search')
     event.preventDefault()
-  }
+  },
 
   render () {
     return (
@@ -30,13 +29,6 @@ class Landing extends React.Component {
       </div>
     )
   }
-}
-
-const { func, string } = React.PropTypes
-
-Landing.propTypes = {
-  searchTerm: string,
-  setSearchTerm: func
-}
+})
 
 module.exports = connector(Landing)

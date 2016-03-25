@@ -17,7 +17,7 @@ const Header = React.createClass({
   render () {
     let headerAction
 
-    // Conditionally show either a search bar or Back depending on 'showSearch' flag
+    // Conditionally show search bar or Back depending on 'showSearch' flag
     if (this.props.showSearch) {
       headerAction = (
         <input
