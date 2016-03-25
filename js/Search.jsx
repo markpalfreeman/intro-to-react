@@ -22,7 +22,7 @@ const Search = React.createClass({
     return (
       <div className='container'>
         <Header
-          handleSearchTermChange={this.handleSearchTermChange}
+          handleSearchTermChange={this.handleSearchTerm}
           searchTerm={this.state.searchTerm}
           showSearch
         />
