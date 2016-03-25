@@ -8,6 +8,7 @@ const initialState = {
   searchTerm: ''
 }
 
+// Main Dispatch function
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SEARCH_TERM:
@@ -24,7 +25,11 @@ const reduceSearchTerm = (state, action) => {
   return newState
 }
 
-const store = redux.createStore(rootReducer)
+// For Production, ONLY rootReducer is needed (the rest is middleware for Redux DevTools)
+const store = redux.createStore(rootReducer, initialState, redux.compose(
+  typeof window === 'object' && typeof window.devToolsExtension !== 'undefined'
+    ? window.devToolsExtension() : (f) => f
+))
 
 const mapStateToProps = (state) => ({
   // implicitly returns object
