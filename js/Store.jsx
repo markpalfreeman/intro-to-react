@@ -46,4 +46,4 @@ const mapDispatchToProps = (dispatch) => ({
 // Creates special component to wrap our components to feed props to components
 const connector = reactRedux.connect(mapStateToProps, mapDispatchToProps)
 
-module.exports = { connector, store }
+module.exports = { connector, store, rootReducer }
