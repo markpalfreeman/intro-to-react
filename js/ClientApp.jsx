@@ -8,16 +8,19 @@ const Landing = require('./Landing')
 const Details = require('./Details')
 const { shows } = require('../public/data')
 
-// "Stateless component" = shed excess React Component baggage/methods
-const App = () => (
-  // Implicit 'return' without { }
-  <Router history={hashHistory}>
-    <Route path='/' component={Layout}>
-      <IndexRoute component={Landing}/>
-      <Route path='/search' component={Search} shows={shows}/>
-      <Route path='/details/:id' component={Details}/>
-    </Route>
-  </Router>
-)
+const App = React.createClass({
+  render () {
+    return (
+      // Implicit 'return' without { }
+      <Router history={hashHistory}>
+        <Route path='/' component={Layout}>
+          <IndexRoute component={Landing}/>
+          <Route path='/search' component={Search} shows={shows}/>
+          <Route path='/details/:id' component={Details}/>
+        </Route>
+      </Router>
+    )
+  }
+})
 
 ReactDOM.render(<App/>, document.getElementById('app'))
